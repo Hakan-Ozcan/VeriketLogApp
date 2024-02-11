@@ -1,0 +1,6 @@
+@HakanLogApp_HostAddress = http://localhost:5011
+
+GET {{HakanLogApp_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
