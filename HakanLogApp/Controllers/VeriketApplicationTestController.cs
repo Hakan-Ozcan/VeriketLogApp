@@ -7,9 +7,11 @@ namespace HakanLogApp.Controllers
     [Route("[controller]")]
     public class VeriketApplicationTestController : ControllerBase
     {
+
         private readonly string _logFilePath;
         public VeriketApplicationTestController()
         {
+
             var AppName = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("AppSettings")["ApplicationName"];
             var FileName = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("AppSettings")["FileName"];
             string _logFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), AppName);
@@ -26,6 +28,7 @@ namespace HakanLogApp.Controllers
             {
                 System.IO.File.Create(_logFilePath).Close();
             }
+
 
         }
 

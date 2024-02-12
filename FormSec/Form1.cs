@@ -11,19 +11,19 @@ namespace FormSec
         {
             InitializeComponent();
             _httpClient = new HttpClient();
-       
+
         }
- 
+
         private async void button1_Click_1(object sender, EventArgs e)
         {
             try
             {
-                _httpClient.BaseAddress = new Uri("http://localhost:5011/");
-                HttpResponseMessage response = await _httpClient.GetAsync("VeriketApplicationTest");
+                //_httpClient.BaseAddress = new Uri("http://localhost:5000/");
+                HttpResponseMessage response = await _httpClient.GetAsync("http://localhost:5000/VeriketApplicationTest");
                 var logs = await response.Content.ReadAsStringAsync();
-               
+
                 dataGridView1.Rows.Clear(); // Önceki verileri temizle
-            
+
                 var logLines = logs.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
                 dataGridView1.Columns.Add("Column1", "Tarih");
                 dataGridView1.Columns.Add("Column2", "Bilgisayar Adı");
@@ -44,6 +44,13 @@ namespace FormSec
                 MessageBox.Show($"Bir hata oluştu: {ex.Message}");
             }
 
+        }
+
+        private async void Form1_Load(object sender, EventArgs e)
+        {
+           
+            await _httpClient.PostAsync("http://localhost:5000/VeriketApplicationTest", null);
+          
         }
     }
 }
